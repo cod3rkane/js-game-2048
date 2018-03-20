@@ -1,0 +1,25 @@
+{
+  "name": "js-game-2048",
+  "version": "1.0.0",
+  "description": "JavaScript version of 2048 game, test to MiniClip. By Cod3rKane",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cod3rkane/js-game-2048.git"
+  },
+  "keywords": [
+    "javascript",
+    "game",
+    "webGL",
+    "canvas"
+  ],
+  "author": "cod3rkane",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/cod3rkane/js-game-2048/issues"
+  },
+  "homepage": "https://github.com/cod3rkane/js-game-2048#readme"
+}
