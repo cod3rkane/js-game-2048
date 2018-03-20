@@ -26,8 +26,11 @@ module.exports = {
   devServer: {
     contentBase: paths.SRC,
     historyApiFallback: true,
-    port: 3030
+    port: 8080,
+    open: true,
   },
+  devtool: "source-map",
+  target: "web",
   module: {
     rules: [
       {
