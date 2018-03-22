@@ -5,7 +5,7 @@ export default class Grid {
     this.context = context;
     this.width = width;
     this.height = height;
-    this.boxSize = width / MAX_COLS;
+    this.boxSize = 112;
   }
 
   draw(matrix) {
@@ -13,10 +13,12 @@ export default class Grid {
     for (let col = 0; col < MAX_COLS; col += 1) {
       for (let row = 0; row < MAX_COLS; row += 1) {
         const value = matrix[col][row];
+        const xSpace = row === 0 ? 10 : (row + 1) * 10;
+        const ySpace = col === 0 ? 10 : (col + 1) * 10;
         this.drawBox({
           color: '#eee4db',
-          x: row * this.boxSize,
-          y: col * this.boxSize,
+          x: (row * this.boxSize) + xSpace,
+          y: (col * this.boxSize) + ySpace,
           size: this.boxSize,
           text: value,
         });
@@ -31,11 +33,17 @@ export default class Grid {
 
   drawBox({ color, x, y, size, text }) {
     this.context.fillStyle = color;
-    this.context.fillRect(x, y, size, size);
+    this.context.fillRect(x, y, size - 20, size - 20);
+    this.context.lineJoin = 'round';
+    this.context.lineWidth = 20;
+
+    this.context.strokeStyle = color;
+    this.context.strokeRect(x + (20 / 2), y + (20 / 2), size - 20, size - 20);
+    this.context.fillRect(x + (20 / 2), y + (20 / 2), size - 20, size - 20);
 
     this.context.font = '58px serif';
     this.context.textAlign = 'center';
     this.context.fillStyle = '#fff';
-    this.context.fillText(text, x + 62.5, y + 82);
+    this.context.fillText(text, x + 58, y + 74);
   }
 }
