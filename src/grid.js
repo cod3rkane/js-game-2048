@@ -8,31 +8,34 @@ export default class Grid {
     this.boxSize = width / MAX_COLS;
   }
 
-  draw() {
-    for (let i = 0; i <= MAX_COLS; i += 1) {
-      for (let j = 0; j <= MAX_COLS; j += 1) {
+  draw(matrix) {
+    this.drawBackgroubd();
+    for (let col = 0; col < MAX_COLS; col += 1) {
+      for (let row = 0; row < MAX_COLS; row += 1) {
+        const value = matrix[col][row];
         this.drawBox({
           color: '#eee4db',
-          x: i * this.boxSize,
-          y: j * this.boxSize,
+          x: row * this.boxSize,
+          y: col * this.boxSize,
           size: this.boxSize,
-          text: 2,
+          text: value,
         });
       }
     }
   }
 
-  drawBox({ color, x, y, size, text }) {
-    // Text
-    this.context.fillStyle = '#766e65';
-    this.context.font = '58px serif';
-    this.context.textAlign = 'center';
-    this.context.fillText(text, x - 62.5, y - 48);
+  drawBackgroubd() {
+    this.context.fillStyle = '#bbad9f';
+    this.context.fillRect(0, 0, this.width, this.height);
+  }
 
+  drawBox({ color, x, y, size, text }) {
     this.context.fillStyle = color;
     this.context.fillRect(x, y, size, size);
-    this.context.strokeStyle = '#bbad9f';
-    this.context.lineWidth = 8;
-    this.context.strokeRect(x, y, size, size);
+
+    this.context.font = '58px serif';
+    this.context.textAlign = 'center';
+    this.context.fillStyle = '#fff';
+    this.context.fillText(text, x + 62.5, y + 82);
   }
 }
