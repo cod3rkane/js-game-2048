@@ -1,3 +1,4 @@
+export const MAX_ROWS = 4;
 export const MAX_COLS = 4;
 
 export default class Grid {
@@ -9,9 +10,12 @@ export default class Grid {
   }
 
   draw(matrix) {
+    if (!matrix) {
+      throw new Error('You need to pass a matrix, neo.');
+    }
     this.drawBackgroubd();
     for (let col = 0; col < MAX_COLS; col += 1) {
-      for (let row = 0; row < MAX_COLS; row += 1) {
+      for (let row = 0; row < MAX_ROWS; row += 1) {
         const value = matrix[col][row];
         const xSpace = row === 0 ? 10 : (row + 1) * 10;
         const ySpace = col === 0 ? 10 : (col + 1) * 10;
