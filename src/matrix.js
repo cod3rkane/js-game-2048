@@ -2,7 +2,12 @@ import { MAX_COLS } from './grid';
 
 export default class Matrix {
   constructor() {
-    this.matrix = Matrix.randomMatrix();
+    this.matrix = [
+      [0, 0, 0, 0],
+      [2, 0, 0, 0],
+      [8, 0, 0, 0],
+      [0, 0, 0, 0],
+    ];
   }
 
   static randomMatrix() {
@@ -89,7 +94,8 @@ export default class Matrix {
   }
 
   up() {
-    const reversedMatrix = Array.reverse(this.matrix);
+    const mx = Array.from(this.matrix);
+    const reversedMatrix = Array.reverse(mx);
     const flippedMatrix = Matrix.flipMatrix(reversedMatrix);
     const newMatrix = flippedMatrix.map((row) => {
       const newRow = Matrix.combine(row.filter(value => value));
@@ -105,8 +111,13 @@ export default class Matrix {
     });
 
     const normalMatrix = Matrix.flipMatrix(newMatrix);
+    const normalMatrixReversed = Array.reverse(normalMatrix);
 
-    this.matrix = Matrix.addingRandomNumber(Array.reverse(normalMatrix));
+    if (this.matrix.toString() !== normalMatrixReversed.toString()) {
+      this.matrix = Matrix.addingRandomNumber(normalMatrixReversed);
+    } else {
+      this.matrix = normalMatrixReversed;
+    }
   }
 
   right() {
@@ -123,7 +134,11 @@ export default class Matrix {
       return newRow;
     });
 
-    this.matrix = Matrix.addingRandomNumber(newMatrix);
+    if (this.matrix.toString() !== newMatrix.toString()) {
+      this.matrix = Matrix.addingRandomNumber(newMatrix);
+    } else {
+      this.matrix = newMatrix;
+    }
   }
 
   down() {
@@ -141,7 +156,13 @@ export default class Matrix {
       return newRow;
     });
 
-    this.matrix = Matrix.addingRandomNumber(Matrix.flipMatrix(newMatrix));
+    const mx = Matrix.flipMatrix(newMatrix);
+
+    if (this.matrix.toString() !== mx.toString()) {
+      this.matrix = Matrix.addingRandomNumber(mx);
+    } else {
+      this.matrix = mx;
+    }
   }
 
   left() {
@@ -156,7 +177,11 @@ export default class Matrix {
       return newRow;
     });
 
-    this.matrix = Matrix.addingRandomNumber(newMatrix);
+    if (this.matrix.toString() !== newMatrix.toString()) {
+      this.matrix = Matrix.addingRandomNumber(newMatrix);
+    } else {
+      this.matrix = newMatrix;
+    }
   }
 
   totalScore() {
