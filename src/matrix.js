@@ -29,27 +29,24 @@ export default class Matrix {
   }
 
   up() {
-    for (let row = 0; row < MAX_ROWS; row += 1) {
-      for (let col = 0; col < MAX_COLS; col += 1) {
-        const value = this.matrix[row][col];
-        if (value !== 0 && row !== 0) {
-          let valueRow = row;
-          this.matrix[row][col] = 0;
-
-          do {
-            if (this.matrix[valueRow - 1][col] === 0) {
-              valueRow -= 1;
-            } else {
-              break;
-            }
-          } while (valueRow > 0 && valueRow < MAX_ROWS);
-
-          if (this.matrix[valueRow][col] === 0) {
-            this.matrix[valueRow][col] = value;
-          }
+    const reversedMatrix = Array.reverse(this.matrix);
+    const flippedMatrix = Matrix.flipMatrix(reversedMatrix);
+    const newMatrix = flippedMatrix.map((row) => {
+      const newRow = row.filter(value => value);
+      if (newRow.length < MAX_COLS) {
+        newRow.reverse();
+        while (newRow.length < MAX_COLS) {
+          newRow.push(0);
         }
+        newRow.reverse();
       }
-    }
+
+      return newRow;
+    });
+
+    const test = Matrix.flipMatrix(newMatrix);
+
+    this.matrix = Array.reverse(test);
   }
 
   right() {
