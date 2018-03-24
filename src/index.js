@@ -8,17 +8,18 @@ const grid = new Grid({ context, width: 500, height: 500 });
 const matrix = new Matrix();
 
 function gameControls(e) {
-  console.log(e.key);
   switch (e.key) {
     case 'ArrowUp':
       matrix.up();
       break;
     case 'ArrowRight':
+      matrix.right();
       break;
     case 'ArrowDown':
       matrix.down();
       break;
     case 'ArrowLeft':
+      matrix.left();
       break;
     default:
       break;
