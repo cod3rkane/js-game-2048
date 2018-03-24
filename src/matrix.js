@@ -57,7 +57,9 @@ export default class Matrix {
   }
 
   static flipMatrix(matrix) {
-    return matrix[0].map((column, index) => matrix.map(row => row[index]));
+    const newMatrix = Array.from(matrix);
+
+    return newMatrix[0].map((column, index) => newMatrix.map(row => row[index]));
   }
 
   static rotateMatrix(matrix) {
