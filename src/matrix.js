@@ -47,6 +47,15 @@ export default class Matrix {
     return num >= 1 ? 4 : 2;
   }
 
+  static addingRandomNumber(matrix) {
+    const newMatrix = Array.from(matrix);
+    const spots = Matrix.emptySpots(matrix);
+    const spot = spots[Matrix.randomNumber(0, spots.length)];
+    newMatrix[spot[0]][spot[1]] = Matrix.newNumber();
+
+    return newMatrix;
+  }
+
   static flipMatrix(matrix) {
     return matrix[0].map((column, index) => matrix.map(row => row[index]));
   }
@@ -93,9 +102,9 @@ export default class Matrix {
       return newRow;
     });
 
-    const test = Matrix.flipMatrix(newMatrix);
+    const normalMatrix = Matrix.flipMatrix(newMatrix);
 
-    this.matrix = Array.reverse(test);
+    this.matrix = Matrix.addingRandomNumber(Array.reverse(normalMatrix));
   }
 
   right() {
@@ -112,7 +121,7 @@ export default class Matrix {
       return newRow;
     });
 
-    this.matrix = newMatrix;
+    this.matrix = Matrix.addingRandomNumber(newMatrix);
   }
 
   down() {
@@ -130,7 +139,7 @@ export default class Matrix {
       return newRow;
     });
 
-    this.matrix = Matrix.flipMatrix(newMatrix);
+    this.matrix = Matrix.addingRandomNumber(Matrix.flipMatrix(newMatrix));
   }
 
   left() {
@@ -145,7 +154,7 @@ export default class Matrix {
       return newRow;
     });
 
-    this.matrix = newMatrix;
+    this.matrix = Matrix.addingRandomNumber(newMatrix);
   }
 
   totalScore() {
