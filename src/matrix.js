@@ -2,12 +2,7 @@ import { MAX_COLS } from './grid';
 
 export default class Matrix {
   constructor() {
-    this.matrix = [
-      [0, 0, 0, 0],
-      [2, 0, 0, 0],
-      [8, 0, 0, 0],
-      [0, 0, 0, 0],
-    ];
+    this.matrix = Matrix.randomMatrix();
   }
 
   static randomMatrix() {
