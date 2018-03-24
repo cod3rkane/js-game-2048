@@ -1,11 +1,19 @@
+import './style.scss';
+
 import Grid from './grid';
 import Matrix from './matrix';
 
 const canvas = document.getElementById('app');
 const context = canvas.getContext('2d');
 
+const scoreElm = document.getElementById('score');
+
 const grid = new Grid({ context, width: 500, height: 500 });
 const matrix = new Matrix();
+
+function updateUI() {
+  scoreElm.innerHTML = matrix.totalScore();
+}
 
 function gameControls(e) {
   switch (e.key) {
@@ -28,6 +36,7 @@ function gameControls(e) {
 
 document.onkeydown = gameControls;
 function gameLoop() {
+  updateUI();
   window.requestAnimationFrame(gameLoop);
   grid.draw(matrix.matrix);
 }

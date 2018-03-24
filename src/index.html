@@ -3,10 +3,26 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-
     <title>A 2048 Game Based - By Cod3r Kane</title>
   </head>
   <body>
-    <canvas id="app" width="500" height="500"></canvas>
+    <div class="wrapper">
+      <header>
+        <div class="game-title header-box">
+          <h2>2048</h2>
+        </div>
+        <div class="score header-box">
+          <h2 class="title">Score</h2>
+          <h2 id="score">0</h2>
+        </div>
+        <div class="score header-box">
+            <h2 class="title">Best</h2>
+            <h2 id="bestScore">0</h2>
+          </div>
+      </header>
+      <section>
+        <canvas id="app" width="500" height="500"></canvas>
+      </section>
+    </div>
   </body>
 </html>

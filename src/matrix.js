@@ -98,4 +98,10 @@ export default class Matrix {
 
     this.matrix = newMatrix;
   }
+
+  totalScore() {
+    const sum = (acc, currentValue) => acc + currentValue;
+    const total = this.matrix.map(row => row.reduce(sum)).reduce(sum);
+    return total;
+  }
 }
