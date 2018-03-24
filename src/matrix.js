@@ -1,13 +1,50 @@
-import { MAX_COLS, MAX_ROWS } from './grid';
+import { MAX_COLS } from './grid';
 
 export default class Matrix {
   constructor() {
-    this.matrix = [
-      [2, 0, 0, 2],
-      [0, 4, 2, 2],
-      [0, 0, 4, 2],
-      [2, 2, 0, 2],
+    this.matrix = Matrix.randomMatrix();
+  }
+
+  static randomMatrix() {
+    const matrix = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
     ];
+
+    let spots = Matrix.emptySpots(matrix);
+    let spot = spots[Matrix.randomNumber(0, spots.length)];
+    matrix[spot[0]][spot[1]] = Matrix.newNumber();
+
+    spots = Matrix.emptySpots(matrix);
+    spot = spots[Matrix.randomNumber(0, spots.length)];
+    matrix[spot[0]][spot[1]] = Matrix.newNumber();
+
+    return matrix;
+  }
+
+  static emptySpots(matrix) {
+    let spots = matrix.map((row, index) => row.map((v, col) => {
+      if (v === 0) {
+        return [index, col];
+      }
+
+      return 0;
+    }));
+
+    spots = spots.map(row => row.filter(v => v));
+    return spots.flatten();
+  }
+
+  static randomNumber(min, max) {
+    return Math.floor(Math.random() * max - min) - min;
+  }
+
+  static newNumber() {
+    const num = Math.round(Math.random());
+
+    return num >= 1 ? 4 : 2;
   }
 
   static flipMatrix(matrix) {
