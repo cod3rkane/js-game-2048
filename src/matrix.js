@@ -7,6 +7,10 @@ export default class Matrix extends MatrixUtil {
     this.matrix = Matrix.randomMatrix();
   }
 
+  newGame() {
+    this.matrix = Matrix.randomMatrix();
+  }
+
   up() {
     const mx = Array.from(this.matrix);
     const reversedMatrix = Array.reverse(mx);

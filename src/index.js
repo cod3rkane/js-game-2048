@@ -7,9 +7,17 @@ const canvas = document.getElementById('app');
 const context = canvas.getContext('2d');
 
 const scoreElm = document.getElementById('score');
+const gameOverElm = document.getElementById('gameOver');
 
 const grid = new Grid({ context, width: 500, height: 500 });
 const matrix = new Matrix();
+
+gameOverElm.addEventListener('click', () => {
+  if (gameOverElm.classList.contains('show')) {
+    gameOverElm.classList.remove('show');
+    matrix.newGame();
+  }
+});
 
 function updateUI() {
   scoreElm.innerHTML = matrix.totalScore();
@@ -40,7 +48,7 @@ function gameLoop() {
 
   updateUI();
   if (Matrix.isGameOver(matrix.matrix)) {
-    console.log('Game Over!');
+    gameOverElm.classList.add('show');
   }
 
   grid.draw(matrix.matrix);
