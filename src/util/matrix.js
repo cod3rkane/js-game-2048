@@ -43,7 +43,7 @@ export default class MatrixUtil {
   }
 
   static addingRandomNumber(matrix) {
-    const newMatrix = Array.from(matrix);
+    const newMatrix = MatrixUtil.cloneMatrix(matrix);
     const spots = MatrixUtil.emptySpots(matrix);
     const spot = spots[MatrixUtil.randomNumber(0, spots.length)];
     newMatrix[spot[0]][spot[1]] = MatrixUtil.newNumber();
@@ -52,7 +52,7 @@ export default class MatrixUtil {
   }
 
   static flipMatrix(matrix) {
-    const newMatrix = Array.from(matrix);
+    const newMatrix = MatrixUtil.cloneMatrix(matrix);
 
     return newMatrix[0].map((column, index) =>
       newMatrix.map(row => row[index]),

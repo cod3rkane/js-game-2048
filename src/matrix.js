@@ -14,7 +14,7 @@ export default class Matrix extends MatrixUtil {
   }
 
   up() {
-    const mx = Array.from(this.matrix);
+    const mx = Matrix.cloneMatrix(this.matrix);
     const reversedMatrix = Array.reverse(mx);
     const flippedMatrix = Matrix.flipMatrix(reversedMatrix);
     const newMatrix = flippedMatrix.map((row) => {
