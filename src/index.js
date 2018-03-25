@@ -9,6 +9,7 @@ const context = canvas.getContext('2d');
 const scoreElm = document.getElementById('score');
 const gameOverElm = document.getElementById('gameOver');
 const newGameElm = document.getElementById('newGame');
+const bestScoreElm = document.getElementById('bestScore');
 
 const grid = new Grid({ context, width: 500, height: 500 });
 const matrix = new Matrix();
@@ -22,6 +23,29 @@ newGameElm.addEventListener('click', () => {
 
 function updateUI() {
   scoreElm.innerHTML = matrix.totalScore();
+  if (localStorage.getItem('scores')) {
+    bestScoreElm.innerHTML = JSON.parse(localStorage.getItem('scores')).bestScore;
+  }
+}
+
+function updateBestScore(score) {
+  const store = localStorage.getItem('scores');
+  if (store) {
+    const scores = JSON.parse(store);
+    if (score > scores.bestScore) {
+      scores.bestScore = score;
+    }
+
+    scores.list.push(score);
+    localStorage.setItem('scores', JSON.stringify(scores));
+  } else {
+    const scores = {
+      bestScore: score,
+      list: [score],
+    };
+
+    localStorage.setItem('scores', JSON.stringify(scores));
+  }
 }
 
 function gameControls(e) {
@@ -49,7 +73,10 @@ function gameLoop() {
 
   updateUI();
   if (matrix.isGameOver(matrix.matrix)) {
-    gameOverElm.classList.add('show');
+    if (!gameOverElm.classList.contains('show')) {
+      updateBestScore(matrix.score);
+      gameOverElm.classList.add('show');
+    }
   }
 
   grid.draw(matrix.matrix);
