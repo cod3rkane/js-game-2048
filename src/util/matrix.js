@@ -1,4 +1,44 @@
+import { MAX_ROWS } from '../grid';
+
 export default class MatrixUtil {
+  static isGameOver(matrix) {
+    const spots = MatrixUtil.emptySpots(matrix);
+
+    if (spots.length === 0) {
+      const possibleMatches = [];
+      const mx = MatrixUtil.cloneMatrix(matrix);
+
+      const updatePossibleMatch = (row) => {
+        const combinedRow = MatrixUtil.combine(row);
+        if (combinedRow.length < MAX_ROWS) {
+          possibleMatches.push(true);
+        }
+      };
+
+      // up
+      const flippedMxUp = MatrixUtil.flipMatrix(mx.reverse());
+      flippedMxUp.map(row => updatePossibleMatch(row));
+
+      // right
+      mx.map(row => updatePossibleMatch(row));
+
+      // down
+      const flippedMxDown = MatrixUtil.flipMatrix(mx);
+      flippedMxDown.map(row => updatePossibleMatch(row));
+
+      // left
+      mx.map(row => updatePossibleMatch(row.reverse()));
+
+      return possibleMatches.length === 0;
+    }
+
+    return false;
+  }
+
+  static cloneMatrix(matrix) {
+    return matrix.map(row => row.slice());
+  }
+
   static randomMatrix() {
     const matrix = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
 

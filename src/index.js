@@ -36,8 +36,13 @@ function gameControls(e) {
 
 document.onkeydown = gameControls;
 function gameLoop() {
-  updateUI();
   window.requestAnimationFrame(gameLoop);
+
+  updateUI();
+  if (Matrix.isGameOver(matrix.matrix)) {
+    console.log('Game Over!');
+  }
+
   grid.draw(matrix.matrix);
 }
 // @TODO check some stuffs here, like, game over, pause, etc..
