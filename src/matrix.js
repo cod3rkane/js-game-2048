@@ -2,7 +2,13 @@ import { MAX_COLS } from './grid';
 
 export default class Matrix {
   constructor() {
-    this.matrix = Matrix.randomMatrix();
+    // this.matrix = Matrix.randomMatrix();
+    this.matrix = [
+      [2, 2, 0, 2],
+      [8, 8, 0, 8],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+    ];
   }
 
   static randomMatrix() {
@@ -93,7 +99,10 @@ export default class Matrix {
     const reversedMatrix = Array.reverse(mx);
     const flippedMatrix = Matrix.flipMatrix(reversedMatrix);
     const newMatrix = flippedMatrix.map((row) => {
-      const newRow = Matrix.combine(row.filter(value => value));
+      const filteredRow = row.filter(value => value);
+      const combinedRow = Matrix.combine(filteredRow.reverse());
+      const newRow = combinedRow.reverse();
+
       if (newRow.length < MAX_COLS) {
         newRow.reverse();
         while (newRow.length < MAX_COLS) {
@@ -117,7 +126,9 @@ export default class Matrix {
 
   right() {
     const newMatrix = this.matrix.map((row) => {
-      const newRow = Matrix.combine(row.filter(value => value));
+      const filteredRow = row.filter(value => value);
+      const combinedRow = Matrix.combine(filteredRow.reverse());
+      const newRow = combinedRow.reverse();
       if (newRow.length < MAX_COLS) {
         newRow.reverse();
         while (newRow.length < MAX_COLS) {
@@ -139,7 +150,9 @@ export default class Matrix {
   down() {
     const flippedMatrix = Matrix.flipMatrix(this.matrix);
     const newMatrix = flippedMatrix.map((row) => {
-      const newRow = Matrix.combine(row.filter(value => value));
+      const filteredRow = row.filter(value => value);
+      const combinedRow = Matrix.combine(filteredRow.reverse());
+      const newRow = combinedRow.reverse();
       if (newRow.length < MAX_COLS) {
         newRow.reverse();
         while (newRow.length < MAX_COLS) {
