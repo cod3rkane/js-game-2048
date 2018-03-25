@@ -8,11 +8,12 @@ const context = canvas.getContext('2d');
 
 const scoreElm = document.getElementById('score');
 const gameOverElm = document.getElementById('gameOver');
+const newGameElm = document.getElementById('newGame');
 
 const grid = new Grid({ context, width: 500, height: 500 });
 const matrix = new Matrix();
 
-gameOverElm.addEventListener('click', () => {
+newGameElm.addEventListener('click', () => {
   if (gameOverElm.classList.contains('show')) {
     gameOverElm.classList.remove('show');
     matrix.newGame();
