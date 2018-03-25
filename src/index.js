@@ -48,7 +48,7 @@ function gameLoop() {
   window.requestAnimationFrame(gameLoop);
 
   updateUI();
-  if (Matrix.isGameOver(matrix.matrix)) {
+  if (matrix.isGameOver(matrix.matrix)) {
     gameOverElm.classList.add('show');
   }
 

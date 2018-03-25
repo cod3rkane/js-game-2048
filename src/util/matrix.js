@@ -1,40 +1,4 @@
-import { MAX_ROWS } from '../grid';
-
 export default class MatrixUtil {
-  static isGameOver(matrix) {
-    const spots = MatrixUtil.emptySpots(matrix);
-
-    if (spots.length === 0) {
-      const possibleMatches = [];
-      const mx = MatrixUtil.cloneMatrix(matrix);
-
-      const updatePossibleMatch = (row) => {
-        const combinedRow = MatrixUtil.combine(row);
-        if (combinedRow.length < MAX_ROWS) {
-          possibleMatches.push(true);
-        }
-      };
-
-      // up
-      const flippedMxUp = MatrixUtil.flipMatrix(mx.reverse());
-      flippedMxUp.map(row => updatePossibleMatch(row));
-
-      // right
-      mx.map(row => updatePossibleMatch(row));
-
-      // down
-      const flippedMxDown = MatrixUtil.flipMatrix(mx);
-      flippedMxDown.map(row => updatePossibleMatch(row));
-
-      // left
-      mx.map(row => updatePossibleMatch(row.reverse()));
-
-      return possibleMatches.length === 0;
-    }
-
-    return false;
-  }
-
   static cloneMatrix(matrix) {
     return matrix.map(row => row.slice());
   }
@@ -105,23 +69,5 @@ export default class MatrixUtil {
 
   static flipMatrixCounterClockwise(matrix) {
     return MatrixUtil.rotateMatrix(matrix).reverse();
-  }
-
-  static combine(row) {
-    const indices = [];
-    const newRow = Array.from(row);
-    newRow.reverse();
-    const combinedRow = newRow.reduce((acc, cv, index, array) => {
-      if (!indices.includes(index) && cv === array[index + 1]) {
-        acc.push(cv + array[index + 1]);
-        indices.push(index + 1);
-      } else if (!indices.includes(index)) {
-        acc.push(cv);
-      }
-
-      return acc;
-    }, []);
-
-    return combinedRow.reverse();
   }
 }
