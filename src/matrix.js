@@ -115,7 +115,7 @@ export default class Matrix extends MatrixUtil {
     this.score += score;
   }
 
-  combine(row) {
+  combine(row, updateScore = true) {
     const indices = [];
     const newRow = Array.from(row);
     newRow.reverse();
@@ -124,7 +124,9 @@ export default class Matrix extends MatrixUtil {
         const sum = cv + array[index + 1];
         acc.push(sum);
         indices.push(index + 1);
-        this.updateScore(sum);
+        if (updateScore) {
+          this.updateScore(sum);
+        }
       } else if (!indices.includes(index)) {
         acc.push(cv);
       }
@@ -143,7 +145,7 @@ export default class Matrix extends MatrixUtil {
       const mx = Matrix.cloneMatrix(matrix);
 
       const updatePossibleMatch = (row) => {
-        const combinedRow = this.combine(row);
+        const combinedRow = this.combine(row, false);
         if (combinedRow.length < MAX_ROWS) {
           possibleMatches.push(true);
         }
