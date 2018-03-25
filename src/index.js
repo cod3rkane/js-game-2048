@@ -8,13 +8,14 @@ const context = canvas.getContext('2d');
 
 const scoreElm = document.getElementById('score');
 const gameOverElm = document.getElementById('gameOver');
-const newGameElm = document.getElementById('newGame');
+const newGameElm = document.getElementsByClassName('newGame');
 const bestScoreElm = document.getElementById('bestScore');
 
 const grid = new Grid({ context, width: 500, height: 500 });
 const matrix = new Matrix();
 
-newGameElm.addEventListener('click', () => {
+newGameElm.item(0).addEventListener('click', () => matrix.newGame());
+newGameElm.item(1).addEventListener('click', () => {
   if (gameOverElm.classList.contains('show')) {
     gameOverElm.classList.remove('show');
     matrix.newGame();
