@@ -20,7 +20,7 @@ export default class Grid {
         const xSpace = row === 0 ? 10 : (row + 1) * 10;
         const ySpace = col === 0 ? 10 : (col + 1) * 10;
         this.drawBox({
-          color: '#eee4db',
+          color: `rgb(${(value * 8) + 144}, ${(value * 16) + 144}, ${(value * 8) + 144})`,
           x: (row * this.boxSize) + xSpace,
           y: (col * this.boxSize) + ySpace,
           size: this.boxSize,
@@ -45,9 +45,10 @@ export default class Grid {
     this.context.strokeRect(x + (20 / 2), y + (20 / 2), size - 20, size - 20);
     this.context.fillRect(x + (20 / 2), y + (20 / 2), size - 20, size - 20);
 
-    this.context.font = '58px serif';
+    this.context.font = 'bold 38px serif';
     this.context.textAlign = 'center';
-    this.context.fillStyle = '#fff';
-    this.context.fillText(text, x + 58, y + 74);
+    this.context.fillStyle = '#746e65';
+    this.context.stroke();
+    this.context.fillText(text, x + 58, y + 70);
   }
 }
