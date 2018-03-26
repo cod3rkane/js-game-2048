@@ -1,3 +1,5 @@
+import { getColor } from './util/colors';
+
 export const MAX_ROWS = 4;
 export const MAX_COLS = 4;
 
@@ -20,11 +22,12 @@ export default class Grid {
         const xSpace = row === 0 ? 10 : (row + 1) * 10;
         const ySpace = col === 0 ? 10 : (col + 1) * 10;
         this.drawBox({
-          color: `rgb(${(value * 8) + 144}, ${(value * 16) + 144}, ${(value * 8) + 144})`,
+          color: getColor(value).color,
           x: (row * this.boxSize) + xSpace,
           y: (col * this.boxSize) + ySpace,
           size: this.boxSize,
           text: value,
+          textColor: getColor(value).textColor,
         });
       }
     }
@@ -35,7 +38,7 @@ export default class Grid {
     this.context.fillRect(0, 0, this.width, this.height);
   }
 
-  drawBox({ color, x, y, size, text }) {
+  drawBox({ color, x, y, size, text, textColor }) {
     this.context.fillStyle = color;
     this.context.fillRect(x, y, size - 20, size - 20);
     this.context.lineJoin = 'round';
@@ -47,7 +50,7 @@ export default class Grid {
 
     this.context.font = 'bold 38px serif';
     this.context.textAlign = 'center';
-    this.context.fillStyle = '#746e65';
+    this.context.fillStyle = textColor;
     this.context.stroke();
     this.context.fillText(text, x + 58, y + 70);
   }
