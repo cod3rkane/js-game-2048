@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>A 2048 Game Based - By Cod3r Kane</title>
+</head>
+
+<body>
+  <div id="board">
+    <div class="wrapper">
+      <header>
+        <div>
+          <div class="game-title header-box">
+            <h2>2048</h2>
+          </div>
+          <div class="header-box">
+            <button class="newGame btn secondary">New Game</button>
+          </div>
+        </div>
+        <div>
+          <div class="score header-box">
+            <h2 class="title">Score</h2>
+            <h2 id="score">0</h2>
+          </div>
+          <div class="score header-box">
+            <h2 class="title">Best</h2>
+            <h2 id="bestScore">0</h2>
+          </div>
+        </div>
+      </header>
+      <section>
+        <canvas id="app" width="500" height="500"></canvas>
+      </section>
+      <div id="gameOver">
+        <section>
+          <div class="box">
+            <h2 class="title m-0">Game Over</h2>
+          </div>
+          <div class="buttons-box">
+            <button class="newGame btn primary">New Game</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript" src="bundle.js"></script></body>
+</html>
