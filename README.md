@@ -1,23 +1,43 @@
 ## Elegant and Made with Love <3
 That's my version of 2048 game, made with JavaScript and Canvas.
 
-## Install
-```yarn install```
+## Available Scripts
 
-## Running
-```yarn start```
+In the project directory, you can run:
 
-## Running tests
-```yarn test```
+### `yarn start`
 
-## Contributing
-Be nice and free to improve my code, and let's turn into ours code.
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+### `yarn build`
+
+Builds the app for production.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+### `yarn start`
+
+Launches the production build app.
+
+# Install it and run:
+
+```
+  npm install
+  npm start
+  # or
+  yarn
+  yarn start
+```
+
+# The game:
+A simple version of 2048 game! 
+
+# Images:
+
+![pic1](https://i.imgur.com/lO2dKII.png)
 
 ## Feedback
 I Love feedback, so be nice and give me some comment!
 
-* [Facebook](https://www.facebook.com/papodeprogramador)
-* [Linkedin](https://www.linkedin.com/in/j%C3%BAlio-c%C3%A9sar-lopes-41353063/)
-
-## License
-Copyright (c) Cod3r Kane (Julio Cesar Lopes). All rights reserved.
+* [Twitter](https://twitter.com/jcesarDev)
+* [Linkedin](https://www.linkedin.com/in/cod3rkane/)
