@@ -30,7 +30,7 @@ Launches the production build app.
 ```
 
 # The game:
-A simple version of 2048 game! 
+Use the keyboard arrows to move the grid. Your score
 
 # Images:
 
