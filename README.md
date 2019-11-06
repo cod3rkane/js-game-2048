@@ -30,7 +30,7 @@ Launches the production build app.
 ```
 
 # The game:
-Use the keyboard arrows to move the grid. Your score
+Use the keyboard arrows to move the grid.
 
 # Images:
 
